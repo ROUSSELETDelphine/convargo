@@ -180,6 +180,11 @@ for (var i = 0; i < deliveries.length; i++){
   var commission = [insurance, treasury, rest];
 
   console.log("commission: \ninsurance: " + commission[0] + "\ntreasury: " + commission[1] + "\nrest: " + commission[2]);
+
+  if (deliveries[i].options.deductibleReduction){
+    price += deliveries[i].volume;
+    console.log("updated price with deductible reduction: " + price);
+  }
 }
 
 function infTrucker(id){
