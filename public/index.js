@@ -175,7 +175,7 @@ for (var i = 0; i < deliveries.length; i++){
 
   console.log("price:" + price);
   var insurance = price * 0.3 / 2;
-  var treasury = Math.floor(deliveries[i].distance / 500);
+  var treasury = Math.floor(deliveries[i].distance / 500) + 1;
   var rest = price * 0.3 - insurance - treasury;
   var commission = [insurance, treasury, rest];
 
@@ -185,7 +185,21 @@ for (var i = 0; i < deliveries.length; i++){
     price += deliveries[i].volume;
     console.log("updated price with deductible reduction: " + price);
   }
+
+  var trucker = price - price * 0.3;
+  if (deliveries[i].options.deductibleReduction){
+    var convargo = rest + deliveries[i].volume;
+  }
+  else{
+    var convargo = rest;
+  }
+  var payActors =  [price, trucker, insurance, treasury, convargo];
+
+  console.log("actors:\nshipper: " + payActors[0] + "\ntrucker: " + payActors[1] + "\ninsurance: " + payActors[2] + "\ntreasury: " + payActors[3] + "\nconvargo: " + payActors[4]);
+  console.log("\n");
 }
+
+
 
 function infTrucker(id){
   for (var i = 0; i < truckers.length; i++){
