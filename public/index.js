@@ -151,7 +151,28 @@ console.log(actors);
 
 for (var i = 0; i < deliveries.length; i++){
   var inf = infTrucker(deliveries[i].truckerId);
-  var price = deliveries[i].distance * inf[0] + deliveries[i].volume * inf[1];
+
+  if (deliveries[i].volume > 5 && deliveries[i].volume < 10){
+    var priceV= deliveries[i].volume * (inf[1] - inf[1] * 0.1);
+  }
+
+  else{
+    if (deliveries[i].volume > 10 && deliveries[i].volume < 25){
+      var priceV= deliveries[i].volume * (inf[1] - inf[1] * 0.3);
+    }
+    else {
+      if(deliveries[i].volume >= 25){
+        var priceV= deliveries[i].volume * (inf[1] - inf[1] * 0.5);
+      }
+
+      else {
+        var priceV= deliveries[i].volume * inf[1];
+      }
+    }
+  }
+  var priceD= deliveries[i].distance * inf[0];
+  var price = priceD + priceV;
+
   console.log(price);
 }
 
