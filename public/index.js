@@ -173,7 +173,13 @@ for (var i = 0; i < deliveries.length; i++){
   var priceD= deliveries[i].distance * inf[0];
   var price = priceD + priceV;
 
-  console.log(price);
+  console.log("price:" + price);
+  var insurance = price * 0.3 / 2;
+  var treasury = Math.floor(deliveries[i].distance / 500);
+  var rest = price * 0.3 - insurance - treasury;
+  var commission = [insurance, treasury, rest];
+
+  console.log("commission: \ninsurance: " + commission[0] + "\ntreasury: " + commission[1] + "\nrest: " + commission[2]);
 }
 
 function infTrucker(id){
